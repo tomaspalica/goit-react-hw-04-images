@@ -16,7 +16,7 @@ export const App = () => {
   const [modalAlt, setModalAlt] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
 
 
@@ -31,28 +31,34 @@ export const App = () => {
       return response.json();
     })
     .then(imgData => {
-      setLoading(false);
-      setData( imgData.hits)
-     
-  
-    })
-  }, [search])
-
-  useEffect(() =>{
-    fetch(`https://pixabay.com/api/?key=${MY_KEY}&q=${search}&image_type=photo&page=${page}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
+      if (isSubmitted) {
+        setData(imgData.hits)
+      } else {
+        setData([...data, ...imgData.hits])
       }
-      return response.json();
-    })
-    .then(imgData => {
+      
+      setIsSubmitted(false)
       setLoading(false)
-      setData([...data,...imgData.hits])
      
   
     })
-  }, [page])
+  }, [search,page])
+
+  // useEffect(() =>{
+  //   fetch(`https://pixabay.com/api/?key=${MY_KEY}&q=${search}&image_type=photo&page=${page}`)
+  //   .then(response => {
+  //     if (!response.ok) {
+  //       throw new Error(response.status);
+  //     }
+  //     return response.json();
+  //   })
+  //   .then(imgData => {
+  //     setLoading(false)
+  //     setData([...data,...imgData.hits])
+     
+  
+  //   })
+  // }, [page])
 
 
 // componentDidUpdate(prevProps, prevState) {
@@ -102,10 +108,12 @@ const closeModal = () => {
 }
 
 const handleLoadMore = () =>{
-setPage(page +1)
+setIsSubmitted(false)
+  setPage(page +1)
 }
 const searchPicture =({name}) =>{
   setSearch(name)
+  setIsSubmitted(true)
   
 }
   
