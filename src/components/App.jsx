@@ -32,9 +32,9 @@ export const App = () => {
     })
     .then(imgData => {
       if (isSubmitted) {
-        setData(imgData.hits)
+        setData(d => imgData.hits)
       } else {
-        setData([...data, ...imgData.hits])
+        setData(d =>[...data, ...imgData.hits])
       }
       
       setIsSubmitted(false)
@@ -42,7 +42,7 @@ export const App = () => {
      
   
     })
-  }, [search,page])
+  }, [search,page,isSubmitted])
 
   // useEffect(() =>{
   //   fetch(`https://pixabay.com/api/?key=${MY_KEY}&q=${search}&image_type=photo&page=${page}`)
