@@ -34,7 +34,7 @@ export const App = () => {
       if (isSubmitted) {
         setData(d => imgData.hits)
       } else {
-        setData(d =>[...data, ...imgData.hits])
+        setData(d =>[...d, ...imgData.hits])
       }
       
       setIsSubmitted(false)
