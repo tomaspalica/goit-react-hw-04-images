@@ -16,7 +16,7 @@ export const App = () => {
   const [modalAlt, setModalAlt] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false)
+ 
 
 
 
