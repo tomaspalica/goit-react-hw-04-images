@@ -120,7 +120,7 @@ const searchPicture = ({ name }) => {
     {data.length > 0 && <Button onClick={handleLoadMore}/> }
  
     {showModal && (
-      <Modal onClose={ closeModal}
+      <Modal handleClose={ closeModal}
       modalSrc={modalSrc}
       modalAlt={modalAlt}
       />
