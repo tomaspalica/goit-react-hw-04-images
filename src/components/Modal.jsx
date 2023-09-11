@@ -10,7 +10,7 @@ export const Modal= ({modalAlt,modalSrc, handleClose}) => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         }
-    }, [])
+    }, [handleClose])
    
     
 
